@@ -9,8 +9,21 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             // take value of text input
-            
+            document.querySelector('form').onsubmit = () => {
+               const task = document.querySelector('#task').value;
+               
+               //output value of text into ul
+               const li = document.createElement('li');
+               li.innerHTML = task;
+               document.querySelector('#tasks').append(li);
+
+               // clear input field after submit
+
+               // stop form reload/submit
+               return false;
+            }
             // publish value to ul
+
         });
     </script>
 
@@ -18,7 +31,9 @@
 <body>
     <h1>To Do List</h1>
     <ul id="tasks"></ul>
-    <input type="text" id="task">
-    <input type="submit">
+    <form>
+        <input type="text" id="task" placeholder="New Task">
+        <input type="submit" id="submit">
+    </form>
 </body>
 </html>
