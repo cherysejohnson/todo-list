@@ -8,6 +8,19 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+
+            // By default, submit button is disabled
+            document.querySelector('#submit').disabled = true;
+
+            // submit disable bugs
+            document.querySelector('#task').onkeyup = () => {
+                if (document.querySelector('#task').value.length > 0) {
+                    document.querySelector('#submit').disabled = false;
+                } else {
+                    document.querySelector('#submit').disabled = true;
+                }
+            }
+
             // take value of text input
             document.querySelector('form').onsubmit = () => {
                const task = document.querySelector('#task').value;
@@ -18,11 +31,14 @@
                document.querySelector('#tasks').append(li);
 
                // clear input field after submit
+                document.querySelector('#task').value = '';
+
+                // disable submit button again, once text is moved to ul
+                document.querySelector('#submit').disabled = true;
 
                // stop form reload/submit
                return false;
             }
-            // publish value to ul
 
         });
     </script>
